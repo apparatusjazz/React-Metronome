@@ -14,7 +14,7 @@ class Metronome extends Component {
         super(props);
         this.state = {
             tempo: 120,
-            current16thNote: 0,
+            currentNote: 0,
             nextNoteTime: 0,
             timeSignature: [4, 4],
             playing: false,
@@ -25,25 +25,25 @@ class Metronome extends Component {
     }
     nextNote(tempo) {
         // Advance current note and time by a 16th note...
-        let secondsPerBeat = 60.0 / tempo;    // Notice this picks up the CURRENT 
-        // tempo value to calculate beat length.
-        // this.nextNoteTime += 0.25 * secondsPerBeat;    // Add beat length to last beat time
-        this.setState({ nextNoteTime: this.state.nextNoteTime + 0.25 * secondsPerBeat })
+        let secondsPerBeat = 60.0 / tempo;
+        let rhythmType = 4 / this.state.timeSignature[1];   // Change note rhythm with time signature
 
-        this.setState({ current16thNote: this.state.current16thNote + 1 });
-        if (this.state.current16thNote === 16) {
-            this.setState({ current16thNote: 0 });
+        this.setState({ nextNoteTime: this.state.nextNoteTime + rhythmType * secondsPerBeat })
+
+        this.setState({ currentNote: this.state.currentNote + 1 });
+        if (this.state.currentNote === this.state.timeSignature[0]) {
+            this.setState({ currentNote: 0 });
         }
     }
     scheduleNote(beatNumber, time) {
         // create an oscillator
         let osc = audioContext.createOscillator();
-
+        console.log(this.state.currentNote)
         osc.connect(audioContext.destination);
-        if (beatNumber % 16 === 0)    // beat 0 == high pitch
+        if (beatNumber % this.state.timeSignature[0] === 0)    // beat 0 == high pitch
             osc.frequency.value = 880.0;
-        else if (beatNumber % 4 === 0)    // quarter notes = medium pitch
-            osc.frequency.value = 440.0;
+        // else if (beatNumber % 4 === 0)    // quarter notes = medium pitch
+        //     osc.frequency.value = 440.0;
         else                        // other 16th notes = low pitch
             osc.frequency.value = 220.0;
 
@@ -54,7 +54,7 @@ class Metronome extends Component {
         // while there are notes that will need to play before the next interval, 
         // schedule them and advance the pointer.
         while (this.state.nextNoteTime < audioContext.currentTime + scheduleAheadTime) {
-            this.scheduleNote(this.state.current16thNote, this.state.nextNoteTime);
+            this.scheduleNote(this.state.currentNote, this.state.nextNoteTime);
             this.nextNote(tempo);
         }
     }
@@ -64,7 +64,7 @@ class Metronome extends Component {
     togglePlaying() {
         if (!this.state.playing) {
             this.setState({
-                current16thNote: 0,
+                currentNote: 0,
                 nextNoteTime: audioContext.currentTime
             });
             timing = setInterval(() => {

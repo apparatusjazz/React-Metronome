@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+The goal of this project is to build a simple and accurate web metronome with all the features you would want in a metronome.
+
 ## Available Scripts
 
 In the project directory, you can run:

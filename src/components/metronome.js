@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Accents from './accents';
 // import noteTimer from '../note-time';
 
 // const timer = new noteTimer(120);
@@ -6,7 +7,6 @@ const scheduleAheadTime = 0.1;
 const lookahead = 25.0;
 const noteLength = 0.05;
 let audioContext = new AudioContext();
-let timing;
 
 class Metronome extends Component {
 
@@ -18,10 +18,11 @@ class Metronome extends Component {
             nextNoteTime: 0,
             timeSignature: [4, 4],
             playing: false,
-            accents: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]   // 0 - silent, 1 - regular, 2 - accented
+            accents: []   // 0 - silent, 1 - regular, 2 - accent 1, 3 - accent 2
         }
         this.togglePlaying = this.togglePlaying.bind(this);
         this.changeTempo = this.changeTempo.bind(this);
+        this.handleAccentChange = this.handleAccentChange.bind(this);
     }
     nextNote(tempo) {
         // Advance current note and time by a 16th note...
@@ -38,14 +39,17 @@ class Metronome extends Component {
     scheduleNote(beatNumber, time) {
         // create an oscillator
         let osc = audioContext.createOscillator();
-        console.log(this.state.currentNote)
         osc.connect(audioContext.destination);
-        if (beatNumber % this.state.timeSignature[0] === 0)    // beat 0 == high pitch
+
+        if (this.state.accents[beatNumber] === 3) {
             osc.frequency.value = 880.0;
-        // else if (beatNumber % 4 === 0)    // quarter notes = medium pitch
-        //     osc.frequency.value = 440.0;
-        else                        // other 16th notes = low pitch
+        } else if (this.state.accents[beatNumber] === 2) {
+            osc.frequency.value = 440.0;
+        } else if (this.state.accents[beatNumber] === 1) {
             osc.frequency.value = 220.0;
+        } else {
+            osc.frequency.value = 0;
+        }
 
         osc.start(time);
         osc.stop(time + noteLength);
@@ -61,28 +65,42 @@ class Metronome extends Component {
     changeTempo(event) {
         this.setState({ tempo: parseInt(event.target.value) });
     }
+    handleAccentChange(key, val) {
+        let accents = this.state.accents;
+        accents[key] = parseInt(val);
+        this.setState({
+            accents: accents
+        })
+    }
     togglePlaying() {
         if (!this.state.playing) {
             this.setState({
                 currentNote: 0,
-                nextNoteTime: audioContext.currentTime
+                nextNoteTime: audioContext.currentTime,
             });
-            timing = setInterval(() => {
+            this.timing = setInterval(() => {
                 this.scheduler(this.state.tempo);
             }, lookahead);
         }
         else {
-            clearInterval(timing);
+            clearInterval(this.timing);
         }
         this.setState({
             playing: !this.state.playing
         });
     }
+    componentDidMount() {
+        let accents = Array.from({ length: this.state.timeSignature[0] }, () => 1);
+        this.setState({
+            accents: accents
+        })
+    }
     render() {
         return (
             <div>
                 <button onClick={this.togglePlaying}>Play</button>
-                <input min={50} max={300} value={this.state.tempo} onInput={this.changeTempo}></input>
+                <input value={this.state.tempo} onChange={this.changeTempo}></input>
+                <Accents beats={this.state.timeSignature[0]} defaultAccent={1} handleAccentChange={this.handleAccentChange} />
             </div>
         )
     }

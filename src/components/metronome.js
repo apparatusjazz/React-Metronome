@@ -67,8 +67,9 @@ class Metronome extends Component {
             this.nextNote(tempo);
         }
     }
-    changeTempo(event) {
-        this.setState({ tempo: parseInt(event.target.value) });
+    changeTempo(val) {
+        this.setState({ tempo: val });
+
     }
     handleAccentChange(key, val) {
         let accents = this.state.accents;
@@ -133,8 +134,9 @@ class Metronome extends Component {
     render() {
         return (
             <div>
-                <input value={this.state.tempo} onChange={this.changeTempo}></input>
                 <Controls
+                    tempo={this.state.tempo}
+                    changeTempo={this.changeTempo}
                     togglePlaying={this.togglePlaying}
                     changeBeatNo={this.changeBeatNo}
                     changeBeatLength={this.changeBeatLength}

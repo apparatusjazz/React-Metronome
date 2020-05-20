@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Accents from './accents';
+import Tap from './tap';
+import Controls from './controls';
 // import noteTimer from '../note-time';
 
 // const timer = new noteTimer(120);
@@ -23,6 +25,9 @@ class Metronome extends Component {
         this.togglePlaying = this.togglePlaying.bind(this);
         this.changeTempo = this.changeTempo.bind(this);
         this.handleAccentChange = this.handleAccentChange.bind(this);
+        this.bpmTap = this.bpmTap.bind(this);
+        this.changeBeatLength = this.changeBeatLength.bind(this);
+        this.changeBeatNo = this.changeBeatNo.bind(this);
     }
     nextNote(tempo) {
         // Advance current note and time by a 16th note...
@@ -89,18 +94,54 @@ class Metronome extends Component {
             playing: !this.state.playing
         });
     }
+    bpmTap(bpm) {
+        this.setState({
+            tempo: bpm
+        });
+    }
     componentDidMount() {
         let accents = Array.from({ length: this.state.timeSignature[0] }, () => 1);
         this.setState({
             accents: accents
         })
     }
+    changeBeatNo(val) {
+        let newTimeSig = this.state.timeSignature;
+        newTimeSig[0] = val;
+        let accents = this.state.accents;
+        if (val > accents.length) {
+            for (let i = accents.length; i < val; i++) {
+                accents.push(1);
+            }
+        } else if (val < accents.length) {
+            for (let i = accents.length; i > val; i--) {
+                accents.pop();
+            }
+        }
+        this.setState({
+            timeSignature: newTimeSig,
+            accents: accents
+        })
+    }
+    changeBeatLength(val) {
+        let newTimeSig = this.state.timeSignature;
+        newTimeSig[1] = val;
+        this.setState({
+            timeSignature: newTimeSig
+        })
+    }
     render() {
         return (
             <div>
-                <button onClick={this.togglePlaying}>Play</button>
                 <input value={this.state.tempo} onChange={this.changeTempo}></input>
+                <Controls
+                    togglePlaying={this.togglePlaying}
+                    changeBeatNo={this.changeBeatNo}
+                    changeBeatLength={this.changeBeatLength}
+                />
+                <Tap bpmTap={this.bpmTap} />
                 <Accents beats={this.state.timeSignature[0]} defaultAccent={1} handleAccentChange={this.handleAccentChange} />
+
             </div>
         )
     }

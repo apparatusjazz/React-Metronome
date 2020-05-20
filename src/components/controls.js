@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TimeSignature from './time-signature';
+import Tempo from './tempo';
 
 
 // Play button and bpm controls - slider, input
@@ -10,6 +11,7 @@ class Controls extends Component {
     render() {
         return (
             <div>
+                <Tempo tempo={this.props.tempo} changeTempo={this.props.changeTempo} />
                 <button onClick={(e) => this.handleClick(e)}>Play</button>
                 <TimeSignature
                     changeBeatNo={this.props.changeBeatNo}

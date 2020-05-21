@@ -9,7 +9,11 @@ class Beat extends Component {
         return (
             <div style={beatStyle}>
                 <form>
-                    <input type="text" defaultValue={this.props.accent.toString()} onChange={(e) => { this.handleChange(e, this.props.beatNo) }}></input>
+                    <input
+                        type="text"
+                        defaultValue={this.props.accent.toString()}
+                        onChange={(e) => { this.handleChange(e, this.props.beatNo) }}>
+                    </input>
                 </form>
             </div>
         )

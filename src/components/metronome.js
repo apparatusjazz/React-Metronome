@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Accents from './accents';
 import Tap from './tap';
 import Controls from './controls';
+import Tempo from './tempo';
 // import noteTimer from '../note-time';
 
 // const timer = new noteTimer(120);
@@ -28,6 +29,7 @@ class Metronome extends Component {
         this.bpmTap = this.bpmTap.bind(this);
         this.changeBeatLength = this.changeBeatLength.bind(this);
         this.changeBeatNo = this.changeBeatNo.bind(this);
+        this.tempoChange = this.tempoChange.bind(this);
     }
     nextNote(tempo) {
         // Advance current note and time by a 16th note...
@@ -100,6 +102,13 @@ class Metronome extends Component {
             tempo: bpm
         });
     }
+    tempoChange(val) {
+        let tempo = this.state.tempo;
+        val === 1 ? tempo++ : tempo--;
+        this.setState({
+            tempo: tempo
+        })
+    }
     componentDidMount() {
         let accents = Array.from({ length: this.state.timeSignature[0] }, () => 1);
         this.setState({
@@ -137,6 +146,7 @@ class Metronome extends Component {
                 <Controls
                     tempo={this.state.tempo}
                     changeTempo={this.changeTempo}
+                    tempoChange={this.tempoChange}
                     togglePlaying={this.togglePlaying}
                     changeBeatNo={this.changeBeatNo}
                     changeBeatLength={this.changeBeatLength}

@@ -11,7 +11,11 @@ class Controls extends Component {
     render() {
         return (
             <div>
-                <Tempo tempo={this.props.tempo} changeTempo={this.props.changeTempo} />
+                <Tempo
+                    tempo={this.props.tempo}
+                    changeTempo={this.props.changeTempo}
+                    tempoChange={this.props.tempoChange}
+                />
                 <button onClick={(e) => this.handleClick(e)}>Play</button>
                 <TimeSignature
                     changeBeatNo={this.props.changeBeatNo}

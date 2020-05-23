@@ -3,6 +3,7 @@ import Accents from './accents';
 import Tap from './tap';
 import Tempo from './tempo';
 import TimeSignature from './time-signature'
+import Play from './play';
 
 const scheduleAheadTime = 0.1;
 const lookahead = 25.0;
@@ -141,18 +142,18 @@ class Metronome extends Component {
     render() {
         return (
             <div>
+                <Accents beats={this.state.timeSignature[0]} defaultAccent={1} handleAccentChange={this.handleAccentChange} />
                 <Tempo
                     tempo={this.state.tempo}
                     changeTempo={this.changeTempo}
                     tempoChange={this.tempoChange}
                 />
-                <button onClick={(e) => this.togglePlaying(e)}>Play</button>
+                <Play togglePlaying={this.togglePlaying} />
+                <Tap bpmTap={this.bpmTap} />
                 <TimeSignature
                     changeBeatNo={this.changeBeatNo}
                     changeBeatLength={this.changeBeatLength}
                 />
-                <Tap bpmTap={this.bpmTap} />
-                <Accents beats={this.state.timeSignature[0]} defaultAccent={1} handleAccentChange={this.handleAccentChange} />
 
             </div>
         )

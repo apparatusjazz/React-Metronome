@@ -13,10 +13,10 @@ class Beat extends Component {
         this.accent = 1;
     }
     render() {
-        const colors = ["white", "blue", "red", "yellow"];
+        const colors = ["grey", "blue", "red", "black"];
         const beatStyle = { backgroundColor: colors[this.accent] }
         return (
-            <span style={beatStyle}>
+            <span className="beat" style={beatStyle}>
                 <button
                     onClick={() => this.handleClick(this.props.beatNo)}
                 >{this.props.beatNo}</button>

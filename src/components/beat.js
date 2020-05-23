@@ -1,21 +1,26 @@
 import React, { Component } from 'react'
 
 class Beat extends Component {
-    handleChange(evt, val) {
-        this.props.handleAccentChange(val, evt.target.value);
+
+    handleClick(val) {
+        if (this.accent === 4) {
+            this.accent = 0;
+        }
+        this.props.handleAccentChange(val, ++this.accent);
+
+    }
+    componentDidMount() {
+        this.accent = 1;
     }
     render() {
-        const beatStyle = { height: 150, width: 100, backgroundColor: "grey" }
+        const colors = ["white", "blue", "red", "yellow"];
+        const beatStyle = { backgroundColor: colors[this.accent] }
         return (
-            <div style={beatStyle}>
-                <form>
-                    <input
-                        type="text"
-                        defaultValue={this.props.accent.toString()}
-                        onChange={(e) => { this.handleChange(e, this.props.beatNo) }}>
-                    </input>
-                </form>
-            </div>
+            <span style={beatStyle}>
+                <button
+                    onClick={() => this.handleClick(this.props.beatNo)}
+                >{this.props.beatNo}</button>
+            </span>
         )
     }
 }

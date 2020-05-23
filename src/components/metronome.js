@@ -112,7 +112,7 @@ class Metronome extends Component {
         let accents = Array.from({ length: this.state.timeSignature[0] }, () => 1);
         this.setState({
             accents: accents
-        })
+        });
     }
     changeBeatNo(val) {
         let newTimeSig = this.state.timeSignature;
@@ -142,7 +142,12 @@ class Metronome extends Component {
     render() {
         return (
             <div>
-                <Accents beats={this.state.timeSignature[0]} defaultAccent={1} handleAccentChange={this.handleAccentChange} />
+                <Accents
+                    beats={this.state.timeSignature[0]}
+                    defaultAccent={1}
+                    handleAccentChange={this.handleAccentChange}
+                    currentNote={this.state.currentNote}
+                />
                 <Tempo
                     tempo={this.state.tempo}
                     changeTempo={this.changeTempo}

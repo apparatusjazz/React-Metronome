@@ -8,6 +8,7 @@ class Accents extends Component {
             let beat = <Beat
                 key={i}
                 beatNo={i}
+                currentNote={this.props.currentNote}
                 accent={this.props.defaultAccent}
                 handleAccentChange={this.props.handleAccentChange}
             />

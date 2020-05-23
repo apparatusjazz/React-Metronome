@@ -17,7 +17,7 @@ class Beat extends Component {
         const colors = ["grey", "blue", "red", "black"];
         const highlight = () => {
             if (this.props.beatNo + 1 === this.props.currentNote ||
-                (this.props.beatNo === 3 && this.props.currentNote === 0)) {
+                (this.props.beatNo === this.props.totalBeats - 1 && this.props.currentNote === 0)) {
                 return 5;
             } else return 2;
         }

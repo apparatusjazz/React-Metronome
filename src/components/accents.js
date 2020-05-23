@@ -11,6 +11,7 @@ class Accents extends Component {
                 currentNote={this.props.currentNote}
                 accent={this.props.defaultAccent}
                 handleAccentChange={this.props.handleAccentChange}
+                totalBeats={this.props.beats}
             />
             accents.push(beat);
         }

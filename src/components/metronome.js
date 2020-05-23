@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import Accents from './accents';
 import Tap from './tap';
-import Controls from './controls';
 import Tempo from './tempo';
-// import noteTimer from '../note-time';
+import TimeSignature from './time-signature'
 
-// const timer = new noteTimer(120);
 const scheduleAheadTime = 0.1;
 const lookahead = 25.0;
 const noteLength = 0.05;
@@ -143,11 +141,13 @@ class Metronome extends Component {
     render() {
         return (
             <div>
-                <Controls
+                <Tempo
                     tempo={this.state.tempo}
                     changeTempo={this.changeTempo}
                     tempoChange={this.tempoChange}
-                    togglePlaying={this.togglePlaying}
+                />
+                <button onClick={(e) => this.togglePlaying(e)}>Play</button>
+                <TimeSignature
                     changeBeatNo={this.changeBeatNo}
                     changeBeatLength={this.changeBeatLength}
                 />

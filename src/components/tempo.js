@@ -2,24 +2,31 @@ import React, { Component } from 'react'
 
 class Tempo extends Component {
 
-    handleChange(evt) {
+    changeTempo(evt) {
         let tempo = parseInt(evt.target.value);
         if (isNaN(tempo)) tempo = this.props.tempo;
-        else this.props.changeTempo(tempo);
+        else {
+            this.props.changeTempo(tempo);
+        }
     }
     tempoChange(val) {
         this.props.tempoChange(val);
+    }
+    handleKeyPress(evt) {
+        if (evt.key === "Enter") {
+            this.changeTempo(evt);
+        }
     }
     handleFocus = (evt) => evt.target.select();
 
     render() {
         return (
-            <div>
+            <div key={this.props.tempo}>
                 <button className="bpmDown" onClick={() => this.tempoChange(0)}>--</button>
                 <input
-                    value={this.props.tempo}
+                    defaultValue={this.props.tempo}
                     onFocus={this.handleFocus}
-                    onChange={e => { this.handleChange(e) }}
+                    onKeyPress={e => this.handleKeyPress(e)}
                 ></input>
                 <button className="bpmUp" onClick={() => this.tempoChange(1)}>--</button>
             </div>

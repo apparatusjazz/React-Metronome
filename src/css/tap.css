@@ -1,0 +1,12 @@
+.tap-btn {
+    font-size: medium;
+    color: white;
+    background-color: black;
+
+}
+
+.tap-btn:hover {
+    background: #2079b0;
+    background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
+    text-decoration: none;
+}

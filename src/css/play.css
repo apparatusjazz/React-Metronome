@@ -1,0 +1,18 @@
+/* .button.play {
+    width: 3em;
+    height: 5em;
+    border-style: solid;
+    border-width: 2.5em 0 2.5em 5em;
+    border-color: transparent transparent transparent #202020;
+}
+
+.button.pause {
+    width: 3em;
+    height: 5.2em;
+    border-width: 0 2em 0 2em;
+    border-color: #202020;
+} */
+
+.button {
+    display: inline;
+}

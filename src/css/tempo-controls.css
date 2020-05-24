@@ -1,0 +1,18 @@
+.tempo-controls {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.bpm-adjust {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#bpm {
+    display: inline;
+}
+
+#bpm-slider {
+    padding-top: 40px;
+    width: 80%;
+}

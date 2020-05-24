@@ -153,12 +153,12 @@ class Metronome extends Component {
                     changeTempo={this.changeTempo}
                     tempoChange={this.tempoChange}
                 />
-                <Play togglePlaying={this.togglePlaying} />
-                <Tap bpmTap={this.bpmTap} />
                 <TimeSignature
                     changeBeatNo={this.changeBeatNo}
                     changeBeatLength={this.changeBeatLength}
                 />
+                <Play playing={this.state.playing} togglePlaying={this.togglePlaying} />
+                <Tap bpmTap={this.bpmTap} />
 
             </div>
         )

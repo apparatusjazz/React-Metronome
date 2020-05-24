@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../css/tap.css'
 
 class Tap extends Component {
     handleClick() {
@@ -6,7 +7,7 @@ class Tap extends Component {
         let newInterval = this.time.getTime() - this.old;
         this.old = this.time;
 
-        if (newInterval < 1000) {      //Don't do anything if interval is too big
+        if (newInterval < 1500) {      //Don't do anything if interval is too big
             this.interval.push(newInterval);
             this.time = this.time.getTime();
             let avg;
@@ -25,9 +26,9 @@ class Tap extends Component {
     }
     render() {
         return (
-            <div>
-                <button onClick={() => this.handleClick()}>Tap</button>
-            </div>
+
+            <button className="tap-btn" onClick={() => this.handleClick()}>Tap</button>
+
         )
     }
 }

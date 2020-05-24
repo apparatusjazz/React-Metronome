@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Slider } from '@material-ui/core'
+import '../css/tempo-controls.css'
 
 class Tempo extends Component {
 
@@ -11,7 +12,8 @@ class Tempo extends Component {
         }
     }
     tempoChange(val) {      // Incrementing tempo up or down
-        this.props.tempoChange(val);
+        if (this.props.tempo > 50 && this.props.tempo <= 350)
+            this.props.tempoChange(val);
     }
     handleKeyPress(evt) {
         if (evt.key === "Enter") {
@@ -26,16 +28,19 @@ class Tempo extends Component {
     render() {
         return (
             <div /*key={this.props.tempo}*/>
-                <button className="bpmDown" onClick={() => this.tempoChange(0)}>-</button>
-                {/* <input
-                    defaultValue={this.props.tempo}
-                    onFocus={this.handleFocus}
-                    onKeyPress={e => this.handleKeyPress(e)}
-                ></input> */}
-                <h2>{this.props.tempo}</h2>
-                <button className="bpmUp" onClick={() => this.tempoChange(1)}>+</button>
+                <div className="tempo-controls">
+                    <button className="bpm-adjust down" onClick={() => this.tempoChange(0)}>-</button>
+                    {/* <input
+                        defaultValue={this.props.tempo}
+                        onFocus={this.handleFocus}
+                        onKeyPress={e => this.handleKeyPress(e)}
+                    ></input> */}
+                    <p id="bpm" >{this.props.tempo}</p>
+                    <button className="bpm-adjust up" onClick={() => this.tempoChange(1)}>+</button>
+                </div>
                 <div>
                     <Slider
+                        id="bpm-slider"
                         value={this.props.tempo}
                         onChange={(e, val) => this.handleSliderChange(e, val)}
                         aria-labelledby="continuous-slider"

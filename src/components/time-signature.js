@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import '../css/time-signature.css'
 
 // Play button and bpm controls - slider, input
 class TimeSignature extends Component {
@@ -12,8 +12,8 @@ class TimeSignature extends Component {
     }
     render() {
         return (
-            <div>
-                <div className="time-signature">
+            <div className="time-signature container">
+                <div className="time-signature number">
                     <select defaultValue="4" onChange={(e) => this.handleFirstI(e)}>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -24,7 +24,7 @@ class TimeSignature extends Component {
                         <option value="8">8</option>
                     </select>
                 </div>
-                <div>
+                <div className="time-signature length" >
                     <select defaultValue="4" onChange={(e) => this.handleSecondI(e)}>
                         <option value="2">2</option>
                         <option value="3">3</option>

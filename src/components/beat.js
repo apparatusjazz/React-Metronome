@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+const colors = ["grey", "blue", "red", "black"];
+
 class Beat extends Component {
 
     handleClick(val) {
@@ -14,7 +16,6 @@ class Beat extends Component {
         this.accent = 1;
     }
     render() {
-        const colors = ["grey", "blue", "red", "black"];
         const highlight = () => {
             if (this.props.beatNo + 1 === this.props.currentNote ||
                 (this.props.beatNo === this.props.totalBeats - 1 && this.props.currentNote === 0)) {

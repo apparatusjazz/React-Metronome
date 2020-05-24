@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../css/play.css'
 
 class Play extends Component {
 
@@ -12,13 +13,15 @@ class Play extends Component {
     }
 
     render() {
+        const playing = this.props.playing ? "button pause" : "button play";
         return (
-            <div>
-                <button
-                    onClick={(e) => this.handleClick(e)}
-                    onKeyDown={e => this.handleKeyPress(e)}
-                >Play</button>
-            </div>
+
+            <button
+                className={playing}
+                onClick={(e) => this.handleClick(e)}
+                onKeyDown={e => this.handleKeyPress(e)}
+            >Play</button>
+
         )
     }
 }

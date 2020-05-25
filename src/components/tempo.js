@@ -36,6 +36,8 @@ class Tempo extends Component {
                         onKeyPress={e => this.handleKeyPress(e)}
                     ></input> */}
                     <p id="bpm" >{this.props.tempo}</p>
+
+
                     <button className="bpm-adjust up" onClick={() => this.tempoChange(1)}>+</button>
                 </div>
                 <div>
@@ -46,7 +48,6 @@ class Tempo extends Component {
                         aria-labelledby="continuous-slider"
                         min={50}
                         max={350}
-                        valueLabelDisplay="auto"
                     />
                 </div>
             </div>

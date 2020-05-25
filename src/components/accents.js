@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Beat from './beat';
+import '../css/accents.css'
 
 class Accents extends Component {
     render() {
@@ -16,7 +17,7 @@ class Accents extends Component {
             accents.push(beat);
         }
         return (
-            <div>
+            <div className="accents">
                 {accents}
             </div>
         )

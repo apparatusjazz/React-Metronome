@@ -4,15 +4,32 @@
 }
 
 .bpm-adjust {
+    color: white;
     margin-left: 10px;
     margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    font-size: 1.5rem;
+
+}
+.bpm-adjust:hover {
+    background: rgb(49, 49, 49);
+}
+.bpm-adjust:active {
+    background: rgb(41, 41, 41);
 }
 
 #bpm {
-    display: inline;
+    color: white;
+    display: inline-block;
+    width: 40px;
+    font-size: 18px;
 }
 
 #bpm-slider {
-    padding-top: 40px;
+    color: rgb(214, 214, 214);
+    padding-top: 10px;
+    padding-bottom: 50px;
     width: 80%;
 }

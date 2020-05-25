@@ -14,13 +14,14 @@ class Play extends Component {
 
     render() {
         const playing = this.props.playing ? "button pause" : "button play";
+        const play = this.props.playing ? "Pause" : "Play";
         return (
 
             <button
                 className={playing}
                 onClick={(e) => this.handleClick(e)}
                 onKeyDown={e => this.handleKeyPress(e)}
-            >Play</button>
+            ><span></span></button>
 
         )
     }

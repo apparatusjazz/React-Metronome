@@ -24,6 +24,7 @@ class TimeSignature extends Component {
                         <option value="8">8</option>
                     </select>
                 </div>
+                <hr></hr>
                 <div className="time-signature length" >
                     <select defaultValue="4" onChange={(e) => this.handleSecondI(e)}>
                         <option value="2">2</option>

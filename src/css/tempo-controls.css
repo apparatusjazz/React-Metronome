@@ -10,7 +10,8 @@
     border: none;
     border-radius: 5px;
     background-color: transparent;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    width: 50px;
 
 }
 .bpm-adjust:hover {
@@ -23,8 +24,8 @@
 #bpm {
     color: white;
     display: inline-block;
-    width: 40px;
-    font-size: 18px;
+    width: 60px;
+    font-size: 24px;
 }
 
 #bpm-slider {

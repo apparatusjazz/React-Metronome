@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 The goal of this project is to build a simple and accurate web metronome with all the features you would want in a metronome.
 
 
-![metronome]('./metronome.gif')
+![metronome](metronome.gif)
 ## Available Scripts
 
 In the project directory, you can run:

@@ -4,6 +4,7 @@ import Tap from './tap';
 import Tempo from './tempo';
 import TimeSignature from './time-signature'
 import Play from './play';
+import '../css/metronome.css'
 
 const scheduleAheadTime = 0.1;
 const lookahead = 25.0;
@@ -153,13 +154,14 @@ class Metronome extends Component {
                     changeTempo={this.changeTempo}
                     tempoChange={this.tempoChange}
                 />
-                <TimeSignature
-                    changeBeatNo={this.changeBeatNo}
-                    changeBeatLength={this.changeBeatLength}
-                />
-                <Play playing={this.state.playing} togglePlaying={this.togglePlaying} />
-                <Tap bpmTap={this.bpmTap} />
-
+                <div className="controls">
+                    <TimeSignature
+                        changeBeatNo={this.changeBeatNo}
+                        changeBeatLength={this.changeBeatLength}
+                    />
+                    <Play playing={this.state.playing} togglePlaying={this.togglePlaying} />
+                    <Tap bpmTap={this.bpmTap} />
+                </div>
             </div>
         )
     }

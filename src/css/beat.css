@@ -2,4 +2,9 @@
     background-color: transparent;
     color: white;
     font-size: 14px;
+    padding: 20px 25px;
+}
+
+.btn:hover {
+    outline: 1px rgb(153, 153, 153) solid !important;
 }

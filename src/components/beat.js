@@ -20,13 +20,14 @@ class Beat extends Component {
         const highlight = () => {
             if (this.props.beatNo + 1 === this.props.currentNote ||
                 (this.props.beatNo === this.props.totalBeats - 1 && this.props.currentNote === 0)) {
-                return "24px 20px";
-            } else return "20px 20px";
+                return { backgroundColor: colors[this.accent], padding: "24px 25px", color: "rgb(153, 153, 153)" };
+            } else return { backgroundColor: colors[this.accent], padding: "20px 25px" };
         }
-        const beatStyle = { backgroundColor: colors[this.accent], padding: highlight() }
+        const beatStyle = highlight();
         return (
-            <span className="beat" style={beatStyle}>
+            <span className="beat" >
                 <button
+                    style={beatStyle}
                     className="btn"
                     onClick={() => this.handleClick(this.props.beatNo)}
                 >{this.props.beatNo + 1}</button>

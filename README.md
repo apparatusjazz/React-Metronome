@@ -4,6 +4,9 @@ The goal of this project is to build a simple and accurate web metronome with al
 
 
 ![metronome](metronome.gif)
+
+Features: Accurate timing, easily change the tempo with slider or buttons, toggle different accents for individual beats, change the time signature, tap for bpm
+
 ## Available Scripts
 
 In the project directory, you can run:
